@@ -38,3 +38,7 @@ function createItems(value){
 }
 
 form.addEventListener('submit', onSubmit);
+
+
+
+// test javasciprt bilmem ne cart curt
