@@ -6,13 +6,11 @@ const filter = document.querySelector('.filter');
 const formBtn = document.querySelector('button');
 let isEditMode = false;
 
-
 function displayItems() {
     const itemsFromStorage = getItemsFromStorage();
     itemsFromStorage.forEach(item => addItemToDOM(item))
     checkUI();
 };
-
 function onSubmit(e) {
     e.preventDefault();
     const inputValue = itemInput.value;
@@ -31,18 +29,13 @@ function onSubmit(e) {
         if(checkIfItemExists(inputValue)){
             alert('That item already exists.')
             return;
-        }
-    }
-
+        };
+    };
     addItemToDOM(inputValue);
-
     addItemToStorage(inputValue);
-
     checkUI();
-
     itemInput.value = '';
 };
-
 function addItemToDOM(value) {
     const li = document.createElement('li');
     li.appendChild(document.createTextNode(value))
@@ -51,7 +44,6 @@ function addItemToDOM(value) {
     li.appendChild(button);
     itemList.appendChild(li);
 };
-
 // Create Button 
 function createButton(classes) {
     const button = document.createElement('button');
@@ -60,14 +52,12 @@ function createButton(classes) {
     button.appendChild(icon)
     return button;
 };
-
 // Create Icon 
 function createIcon(classes) {
     const icon = document.createElement('i');
     icon.className = classes;
     return icon;
 };
-
 // Add to Local Storage
 function addItemToStorage(item) {
     const itemsFromStorage = getItemsFromStorage();
@@ -78,7 +68,6 @@ function addItemToStorage(item) {
     // Convert to JSON string and set to local storage
     localStorage.setItem('items', JSON.stringify(itemsFromStorage))
 };
-
 function getItemsFromStorage() {
     let itemsFromStorage;
 
@@ -90,7 +79,6 @@ function getItemsFromStorage() {
     };
     return itemsFromStorage;
 };
-
 // Remove & Clear items
 function onClickItem(e) {
     if (e.target.parentElement.classList.contains('remove-item')) {
@@ -101,12 +89,10 @@ function onClickItem(e) {
         return;
     };
 };
-
 function checkIfItemExists(item){
     let itemsFromStorage = getItemsFromStorage();
     return itemsFromStorage.includes(item);
 }
-
 function setItemToEdit(item) {
     isEditMode = true;
     itemList
@@ -118,7 +104,6 @@ function setItemToEdit(item) {
     formBtn.style.backgroundColor = '#228b22';
     itemInput.value = item.textContent;
 }
-
 function remove(item) {
     if (confirm('Are you sure?')) {
         // remove from ui
@@ -128,7 +113,6 @@ function remove(item) {
         checkUI();
     };
 };
-
 function removeItemFromStorage(item) {
     let itemsFromStorage = getItemsFromStorage();
     // Filter out item to be removed
@@ -136,7 +120,6 @@ function removeItemFromStorage(item) {
 
     localStorage.setItem('items', JSON.stringify(itemsFromStorage));
 };
-
 function clearItems() {
     confirm('All your items will be deleted, are you sure?') ? (itemList.innerHTML = '') : null;
     // Solution 1
@@ -145,7 +128,6 @@ function clearItems() {
     localStorage.removeItem('items');
     checkUI();
 };
-
 function checkUI() {
     itemInput.value = '';
     const items = itemList.querySelectorAll('li');
@@ -161,7 +143,6 @@ function checkUI() {
     formBtn.style.backgroundColor = '#333'
     isEditMode = false;
 };
-
 function filterItems(e) {
     const items = itemList.querySelectorAll('li');
     const text = e.target.value.toLowerCase();
@@ -176,7 +157,6 @@ function filterItems(e) {
         };
     });
 };
-
 // Initialize app
 function init() {
     form.addEventListener('submit', onSubmit);
@@ -188,9 +168,6 @@ function init() {
     checkUI();
 };
 init()
-
-
-
 
 // Local Storage ==>
 // localStorage.setItem('name', 'samet');
