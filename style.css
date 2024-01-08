@@ -33,10 +33,10 @@ header h1 {
   margin: 30px auto;
   padding: 20px;
 }
-
-.edit-mode {
-  color: #ccc;
+.edit-mode{
+    color:rgb(171, 178, 184);
 }
+
 
 /* Form & Input */
 .form-input {
